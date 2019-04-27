@@ -30,7 +30,9 @@ function trial_division(n){
     return 0;
 }
 
-if(trial_division(num) === 0){
+let result = trial_division(num);
+
+if(result === 0){
     console.log(num, "は素数です");
 }else {
     console.log(num, "は", result,"で割り切れます")
