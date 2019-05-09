@@ -11,7 +11,7 @@ def main():
         print(sum(B))
     else:
         print(sum(B) - min(B)*2)
-    
+
 
 if __name__ == "__main__":
     main()

@@ -19,10 +19,10 @@ def main():
     backward.append(0)
     for i in reversed(index):
         backward[i] = gcd(A[i], backward[i+1])
-    # print(forward)
-    # print(backward)
+    print(forward)
+    print(backward)
     M = [gcd(f, b) for f, b in zip(forward, backward[1:])]
-    # print(M)
+    print(M)
     print(max(M))
 
 
