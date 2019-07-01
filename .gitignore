@@ -1,1 +1,6 @@
 *.jar
+\.vscode/launch\.json
+
+*.pdf
+
+*.class
