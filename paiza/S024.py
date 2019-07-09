@@ -43,13 +43,10 @@ def countIslands(area, H, W):
                 label += 1
                 continue
             area[y][x] = min(*arr, label)
-            if label not in lookup.keys():
-                lookup[max(arr)] = min(*arr, label)
-            else:
-                lookup[label] = min(*arr, lookup[max(arr)])
+            lookup[max(arr)] = min(*arr, label, lookup[max(arr)])
 
     count = 0
-    print(lookup)
+    # print(lookup)
     for k, v in lookup.items():
         if k == v:
             count += 1
@@ -69,8 +66,8 @@ def main():
     for i in all:
         a = relabel(copy.deepcopy(area), i, H)
         count = countIslands(a, H, W)
-        print(*a, sep="\n")
-        print(i, count)
+        # print(*a, sep="\n")
+        # print(i, count)
         if count == N:
             # print(*a, sep="\n")
             # print(count)
