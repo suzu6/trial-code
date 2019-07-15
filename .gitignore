@@ -4,3 +4,9 @@
 *.pdf
 
 *.class
+
+get-pip\.py
+
+Pipfile
+
+Pipfile\.lock
