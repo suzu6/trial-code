@@ -10,3 +10,7 @@ get-pip\.py
 Pipfile
 
 Pipfile\.lock
+
+Node/node_modules/*
+
+.vscode
