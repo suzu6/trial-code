@@ -5,10 +5,13 @@
 var points = [];
 var javis = new Javis();
 
+
 function setup() {
   let width = 400;
   let height = 400;
   let space = 30;
+  points = [];
+  javis.contour = [];
   createCanvas(width, height);
   for (let i = 0; i < 30; i++) {
     let x = random(space, width - space);
@@ -20,8 +23,10 @@ function setup() {
 
 function draw() {
   // 終了判定
-  if (this.is_completed || javis.contour.length > 30) return;
-  background(220);
+  if (this.is_completed || javis.contour.length > 30) {
+    setup();
+  }
+  background(240);
   for (let i = 0; i < points.length; i++) {
     points[i].show();
   }
@@ -75,7 +80,7 @@ function Javis() {
   }
 
   this.line = function (a, b) {
-    stroke(126);
+    stroke('rgb(0, 115, 109)');
     line(a.x, a.y, b.x, b.y)
   }
 
