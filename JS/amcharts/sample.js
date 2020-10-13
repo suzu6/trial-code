@@ -77,16 +77,16 @@ series.columns.template.adapter.add("fill", function(fill, target){
   return chart.colors.getIndex(target.dataItem.index);
 });
 
-var year = 2003;
-label.text = year.toString();
+var date = startDate = 20200926;
+label.text = date.toString();
 
 var interval;
 
 function play() {
   interval = setInterval(function(){
-    nextYear();
+    nextDate();
   }, stepDuration)
-  nextYear();
+  nextDate();
 }
 
 function stop() {
@@ -95,14 +95,17 @@ function stop() {
   }
 }
 
-function nextYear() {
-  year++
+function nextDate() {
+  // date++
+  date = moment(date.toString())
+            .add(1, 'days')
+            .format("YYYYMMDD");
 
-  if (year > 2018) {
-    year = 2003;
+  if (date > 20201004) {
+    date = startDate;
   }
 
-  var newData = allData[year];
+  var newData = allData[date];
   var itemsWithNonZero = 0;
   for (var i = 0; i < chart.data.length; i++) {
     chart.data[i].MAU = newData[i].MAU;
@@ -118,7 +121,7 @@ function nextYear() {
   
   
 
-  if (year == 2003) {
+  if (date == startDate) {
     series.interpolationDuration = stepDuration / 4;
     valueAxis.rangeChangeDuration = stepDuration / 4;
   }
@@ -128,7 +131,7 @@ function nextYear() {
   }
 
   chart.invalidateRawData();
-  label.text = year.toString();
+  label.text = date.toString();
 
   categoryAxis.zoom({ start: 0, end: itemsWithNonZero / categoryAxis.dataItems.length });
 }
@@ -137,7 +140,7 @@ function nextYear() {
 categoryAxis.sortBySeries = series;
 
 var allData = {
-  "2003": [
+  "20200926": [
     {
       "network": "Facebook",
       "MAU": 0
@@ -216,7 +219,7 @@ var allData = {
       "MAU": 0
     }
   ],
-  "2004": [
+  "20200927": [
     {
       "network": "Facebook",
       "MAU": 0
@@ -294,7 +297,7 @@ var allData = {
       "MAU": 0
     }
   ],
-  "2005": [
+  "20200928": [
     {
       "network": "Facebook",
       "MAU": 0
@@ -372,7 +375,7 @@ var allData = {
       "MAU": 1946322
     }
   ],
-  "2006": [
+  "20200929": [
     {
       "network": "Facebook",
       "MAU": 0
@@ -450,7 +453,7 @@ var allData = {
       "MAU": 19878248
     }
   ],
-  "2007": [
+  "20200930": [
     {
       "network": "Facebook",
       "MAU": 0
@@ -528,7 +531,7 @@ var allData = {
       "MAU": 143932250
     }
   ],
-  "2008": [
+  "20201001": [
     {
       "network": "Facebook",
       "MAU": 100000000
@@ -606,7 +609,7 @@ var allData = {
       "MAU": 294493950
     }
   ],
-  "2009": [
+  "20201002": [
     {
       "network": "Facebook",
       "MAU": 276000000
@@ -684,7 +687,7 @@ var allData = {
       "MAU": 413611440
     }
   ],
-  "2010": [
+  "20201003": [
     {
       "network": "Facebook",
       "MAU": 517750000
@@ -762,7 +765,7 @@ var allData = {
       "MAU": 480551990
     }
   ],
-  "2011": [
+  "20201004": [
     {
       "network": "Facebook",
       "MAU": 766000000
@@ -840,7 +843,7 @@ var allData = {
       "MAU": 642669824
     }
   ],
-  "2012": [
+  "20201005": [
     {
       "network": "Facebook",
       "MAU": 979750000
@@ -918,7 +921,7 @@ var allData = {
       "MAU": 844638200
     }
   ],
-  "2013": [
+  "20201006": [
     {
       "network": "Facebook",
       "MAU": 1170500000
@@ -996,7 +999,7 @@ var allData = {
       "MAU": 1065223075
     }
   ],
-  "2014": [
+  "20201007": [
     {
       "network": "Facebook",
       "MAU": 1334000000
@@ -1074,7 +1077,7 @@ var allData = {
       "MAU": 1249451725
     }
   ],
-  "2015": [
+  "20201008": [
     {
       "network": "Facebook",
       "MAU": 1516750000
@@ -1152,7 +1155,7 @@ var allData = {
       "MAU": 1328133360
     }
   ],
-  "2016": [
+  "20201009": [
     {
       "network": "Facebook",
       "MAU": 1753500000
@@ -1230,7 +1233,7 @@ var allData = {
       "MAU": 1399053600
     }
   ],
-  "2017": [
+  "20201010": [
     {
       "network": "Facebook",
       "MAU": 2035750000
@@ -1308,7 +1311,7 @@ var allData = {
       "MAU": 1495657000
     }
   ],
-  "2018": [
+  "20201011": [
     {
       "network": "Facebook",
       "MAU": 2255250000
@@ -1388,7 +1391,7 @@ var allData = {
   ]
 }
 
-chart.data = JSON.parse(JSON.stringify(allData[year]));
+chart.data = JSON.parse(JSON.stringify(allData[date]));
 categoryAxis.zoom({ start: 0, end: 1 / chart.data.length });
 
 series.events.on("inited", function() {
