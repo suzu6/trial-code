@@ -1,0 +1,5 @@
+**/*.lock
+**/*.exe
+**/*.pdb
+**/target
+**/.vs
