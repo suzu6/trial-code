@@ -2,4 +2,4 @@
 **/*.exe
 **/*.pdb
 **/target
-**/.vs
+**/.vs\
