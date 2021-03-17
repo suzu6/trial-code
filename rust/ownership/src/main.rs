@@ -24,7 +24,7 @@ fn main() {
 
     
     let s1 = String::from("hello");
-    let len = calculate_length2(&s1);
+    calculate_length2(&s1);
 }
 
 fn calculate_length(s: String) -> (String, usize) {
