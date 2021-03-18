@@ -28,6 +28,7 @@ pub fn gcd(a: i32, b: i32) -> i32 {
   }
   gcd_recrusive(max(a, b), min(a, b))
 }
+
 /// ユークリッドの互除法
 fn gcd_recrusive(a: i32, b: i32) -> i32 {
   let c = a % b;
@@ -54,4 +55,28 @@ pub fn max(a: i32, b: i32) -> i32 {
   } else {
     b
   }
+}
+
+/// 絶対値を返す
+pub fn abs(x: i32) -> i32 {
+  if x < 0 {
+    -x
+  } else {
+    x
+  }
+}
+
+// n!を返す
+pub fn factorial(n: i32) -> i32 {
+  if n < 0 {
+    panic!("n is not integer.");
+  }
+  if n == 0 {
+    return 1;
+  }
+  let mut result = n;
+  for i in 1..n {
+    result *= i;
+  }
+  result
 }

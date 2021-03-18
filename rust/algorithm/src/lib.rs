@@ -66,4 +66,21 @@ mod tests {
             crate::math::lcm(-2, -3);
         }
     }
+
+    
+    mod test_fractal {
+        #[test]
+        fn test_fractal() {
+            assert_eq!(720, crate::math::factorial(6));
+        }
+        #[test]
+        fn test_arg_zero() {
+            assert_eq!(1, crate::math::factorial(0));
+        }
+        #[test]
+        #[should_panic]
+        fn test_arg_minus() {
+            crate::math::factorial(-2);
+        }
+    }
 }
