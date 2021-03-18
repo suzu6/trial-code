@@ -13,9 +13,17 @@ pub fn sum_one_to_n<T: PrimInt>(n: T) -> i32 {
   }
 }
 
+/// 最小公約数
+pub fn lcm(a: i32, b: i32) -> i32 {
+  if a < 1 || b < 1 {
+    panic!("a or b is not natural number.");
+  }
+  (a * b) / gcd(a, b)
+}
+
 /// 最大公約数
 pub fn gcd(a: i32, b: i32) -> i32 {
-  if a < 0 || b < 0 {
+  if a < 1 || b < 1 {
     panic!("a or b is not natural number.");
   }
   gcd_recrusive(max(a, b), min(a, b))
