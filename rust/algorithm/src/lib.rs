@@ -83,4 +83,19 @@ mod tests {
             crate::math::factorial(-2);
         }
     }
+
+    mod test_pow {
+        #[test]
+        fn test_pow() {
+            assert_eq!(4, crate::math::pow(2, 2));
+        }
+        #[test]
+        fn test_arg_zero() {
+            assert_eq!(1, crate::math::pow(3, 0));
+        }
+        #[test]
+        fn test_arg_minus() {
+            assert_eq!(4, crate::math::pow(-2, 2));
+        }
+    }
 }

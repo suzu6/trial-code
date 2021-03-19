@@ -36,3 +36,4 @@ Rust (1.42.0)	bash -c 'cp ./Main.rs ./../rust/src/main.rs && cargo build --relea
 
 - [AtCoder Clans](https://kato-hiro.github.io/AtCoderClans/libraries)
   - 【非公式】AtCoderがもっと楽しくなるリンク集です。有志による非公式サービス・ツール・ライブラリ・記事などをまとめています。
+- https://github.com/qryxip/cargo-compete/blob/master/README-ja.md

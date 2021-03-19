@@ -80,3 +80,15 @@ pub fn factorial(n: i32) -> i32 {
   }
   result
 }
+
+// x^yを返す
+pub fn pow(x: i32, y: u32) -> i32 {
+  if y == 0 {
+    return 1;
+  }
+  let mut dst = 1;
+  for _ in 0..y {
+    dst *= x; 
+  }
+  dst
+}
