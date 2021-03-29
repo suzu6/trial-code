@@ -57,7 +57,7 @@ PyAutoGUI==0.9.47
 pycodestyle==2.5.0
 pyflakes==2.1.1
 PyGetWindow==0.0.7
-Pygments==2.5.2
+Pygments==2.7.4
 pylint==2.2.2
 PyMsgBox==1.0.7
 pyparsing==2.3.1
