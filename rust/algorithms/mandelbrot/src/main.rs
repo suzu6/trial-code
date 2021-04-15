@@ -25,13 +25,31 @@ fn main() {
 
     
     // Single thread rendering;
-    // let mut pixels = vec![0; bounds.0 * bounds.1];
-    // render(&mut pixels, bounds, upper_left, lower_right);
-    // write_image("no_thread.png", &pixels, bounds).expect("error writing PNG file");
-
+    let pixels = single_thread_render(bounds, upper_left, lower_right);
+    write_image("no_thread.png", &pixels, bounds).expect("error writing PNG file");
     
-    let mut pixels = vec![0; bounds.0 * bounds.1];
     // Multi thread rendering;
+    let pixels = multi_threads_render(bounds, upper_left, lower_right);
+    write_image(&args[1], &pixels, bounds).expect("error writing PNG file");
+}
+
+fn single_thread_render(
+    bounds: (usize, usize),
+    upper_left: Complex<f64>,
+    lower_right: Complex<f64>
+) -> Vec<u8> {
+    let mut pixels = vec![0; bounds.0 * bounds.1];
+    render(&mut pixels, bounds, upper_left, lower_right);
+
+    pixels
+}
+
+fn multi_threads_render(
+    bounds: (usize, usize),
+    upper_left: Complex<f64>,
+    lower_right: Complex<f64>
+) -> Vec<u8> {
+    let mut pixels = vec![0; bounds.0 * bounds.1];
     // Scope of slicing up `pixels` into horizontal bands.
     {
         let bands: Vec<(usize, &mut [u8])> = pixels.chunks_mut(bounds.0).enumerate().collect();
@@ -46,10 +64,10 @@ fn main() {
         });
     }
 
-    write_image(&args[1], &pixels, bounds).expect("error writing PNG file");
+    pixels
 }
 
-use std::str::FromStr;
+
 /// Parse the string `s` as a coordinate pair, like `"400x600"` or `"1.0,0.5"`.
 ///
 /// Specifically, `s` should have the form <left><sep><right>, where <sep> is
@@ -58,6 +76,8 @@ use std::str::FromStr;
 ///
 /// If `s` has the proper form, return `Some<(x, y)>`. If it doesn't parse
 /// correctly, return `None`.
+use std::str::FromStr;
+
 fn parse_pair<T: FromStr>(s: &str, separator: char) -> Option<(T, T)> {
     match s.find(separator) {
         None => None,
