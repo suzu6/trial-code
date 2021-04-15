@@ -1,4 +1,3 @@
-use rayon::prelude::*;
 use std::io::Write;
 
 fn main() {
@@ -32,41 +31,6 @@ fn main() {
     let pixels = multi_threads_render(bounds, upper_left, lower_right);
     write_image(&args[1], &pixels, bounds).expect("error writing PNG file");
 }
-
-fn single_thread_render(
-    bounds: (usize, usize),
-    upper_left: Complex<f64>,
-    lower_right: Complex<f64>
-) -> Vec<u8> {
-    let mut pixels = vec![0; bounds.0 * bounds.1];
-    render(&mut pixels, bounds, upper_left, lower_right);
-
-    pixels
-}
-
-fn multi_threads_render(
-    bounds: (usize, usize),
-    upper_left: Complex<f64>,
-    lower_right: Complex<f64>
-) -> Vec<u8> {
-    let mut pixels = vec![0; bounds.0 * bounds.1];
-    // Scope of slicing up `pixels` into horizontal bands.
-    {
-        let bands: Vec<(usize, &mut [u8])> = pixels.chunks_mut(bounds.0).enumerate().collect();
-
-        bands.into_par_iter().for_each(|(i, band)| {
-            let top = i;
-            let band_bounds = (bounds.0, 1);
-            let band_upper_left = pixel_to_point(bounds, (0, top), upper_left, lower_right);
-            let band_lower_right =
-                pixel_to_point(bounds, (bounds.0, top + 1), upper_left, lower_right);
-            render(band, band_bounds, band_upper_left, band_lower_right);
-        });
-    }
-
-    pixels
-}
-
 
 /// Parse the string `s` as a coordinate pair, like `"400x600"` or `"1.0,0.5"`.
 ///
@@ -156,6 +120,43 @@ fn test_pixel_to_point() {
         ),
         Complex { re: -0.5, im: -0.5 }
     );
+}
+
+
+use rayon::prelude::*;
+
+fn single_thread_render(
+    bounds: (usize, usize),
+    upper_left: Complex<f64>,
+    lower_right: Complex<f64>
+) -> Vec<u8> {
+    let mut pixels = vec![0; bounds.0 * bounds.1];
+    render(&mut pixels, bounds, upper_left, lower_right);
+
+    pixels
+}
+
+fn multi_threads_render(
+    bounds: (usize, usize),
+    upper_left: Complex<f64>,
+    lower_right: Complex<f64>
+) -> Vec<u8> {
+    let mut pixels = vec![0; bounds.0 * bounds.1];
+    // Scope of slicing up `pixels` into horizontal bands.
+    {
+        let bands: Vec<(usize, &mut [u8])> = pixels.chunks_mut(bounds.0).enumerate().collect();
+
+        bands.into_par_iter().for_each(|(i, band)| {
+            let top = i;
+            let band_bounds = (bounds.0, 1);
+            let band_upper_left = pixel_to_point(bounds, (0, top), upper_left, lower_right);
+            let band_lower_right =
+                pixel_to_point(bounds, (bounds.0, top + 1), upper_left, lower_right);
+            render(band, band_bounds, band_upper_left, band_lower_right);
+        });
+    }
+
+    pixels
 }
 
 /// Render a rectangle of the Mandelbrot set into a buffer of pixels.
