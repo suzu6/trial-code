@@ -4,38 +4,6 @@ version = "0.1.0"
 authors = ["suzu6 <y.suzumura0604@gmail.com>"]
 edition = "2018"
 
-# [package.metadata.cargo-compete.bin]
-# samples-a = { alias = "a", problem = "https://atcoder.jp/contests/samples/tasks/samples_a" }
-# samples-b = { alias = "b", problem = "https://atcoder.jp/contests/samples/tasks/samples_b" }
-# samples-c = { alias = "c", problem = "https://atcoder.jp/contests/samples/tasks/samples_c" }
-# samples-d = { alias = "d", problem = "https://atcoder.jp/contests/samples/tasks/samples_d" }
-# samples-e = { alias = "e", problem = "https://atcoder.jp/contests/samples/tasks/samples_e" }
-# samples-f = { alias = "f", problem = "https://atcoder.jp/contests/samples/tasks/samples_f" }
-
-[[bin]]
-name = "samples-a"
-path = "src/bin/a.rs"
-
-[[bin]]
-name = "samples-b"
-path = "src/bin/b.rs"
-
-[[bin]]
-name = "samples-c"
-path = "src/bin/c.rs"
-
-[[bin]]
-name = "samples-d"
-path = "src/bin/d.rs"
-
-[[bin]]
-name = "samples-e"
-path = "src/bin/e.rs"
-
-[[bin]]
-name = "samples-f"
-path = "src/bin/f.rs"
-
 [dependencies]
 num = "=0.2.1"
 num-bigint = "=0.2.6"
