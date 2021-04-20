@@ -19,6 +19,21 @@ fn main() {
     // Simultaneous integer division and modulus
     assert_eq!(integer::div_rem(11, 3), (3, 2));
 
+    // -11 わる 3
+    assert_eq!(integer::div_mod_floor(-11, 3), (-4, 1));
+    assert_eq!(integer::div_rem(-11, 3), (-3, -2));
+    
+    // 11 わる -3
+    assert_eq!(integer::div_mod_floor(11, -3), (-4, -1));
+    assert_eq!(integer::div_rem(11, -3), (-3, 2));
+
+    // -11 わる -3
+    assert_eq!(integer::div_mod_floor(-11, -3), (3, -2));
+    assert_eq!(integer::div_rem(-11, -3), (3, -2));
+    // -17 わる -5
+    assert_eq!(integer::div_mod_floor(-17, -5), (3, -2));
+    assert_eq!(integer::div_rem(-17, -5), (3, -2));
+
     // sqrt(x) x^(1/2)
     assert_eq!(integer::sqrt(2), 1);
     assert_eq!(Float::sqrt(2.0), 1.4142135623730951);
@@ -58,4 +73,29 @@ fn main() {
     
     // Binomial Coefficient n!/(k!*(n-k)!)
     assert_eq!(integer::binomial(10, 3), 120);
+
+    random();
+
+    // ndarray_sample();
 }
+
+
+
+fn random() {
+    let mut v:Vec<i32> = vec![0; 10];
+    for x in v.iter_mut() {
+        *x = rand::random();
+    }
+    println!("random {:?}", v);
+}
+
+
+// use ndarray::prelude::*;
+// use ndarray::{ShapeError, ErrorKind};
+
+// fn ndarray_sample(){
+//     let mut a = Array::zeros((0, 4));
+//     a.append_row(aview1(&[0., 1., 2., 3.])).unwrap();
+//     a.append_row(aview1(&[4., 5., 6., 7.])).unwrap();
+//     assert_eq!(a.shape(), &[2, 4]);
+// }
