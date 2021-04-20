@@ -1,8 +1,8 @@
 use std::mem;
 use std::os::raw::c_void;
 use std::time::Duration;
-use std::fs;
-use std::path::PathBuf;
+// use std::fs;
+// use std::path::PathBuf;
 
 use c_str_macro::c_str;
 use cgmath::perspective;
@@ -58,7 +58,10 @@ fn main() {
 
     // Windows かつ、現在のパスがopengl\なのでsrc\\から指定する
     // let shader = Shader::new("./rsc/shader/shader.vs", "./rsc/shader/shader.fs");
-    let shader = Shader::new(".\\src\\rsc\\shader\\shader.vs", ".\\src\\rsc\\shader\\shader.fs");
+    let shader = Shader::new(
+        ".\\src\\rsc\\shader\\shader.vs",
+        ".\\src\\rsc\\shader\\shader.fs",
+    );
 
     // set buffer
     #[rustfmt::skip]
