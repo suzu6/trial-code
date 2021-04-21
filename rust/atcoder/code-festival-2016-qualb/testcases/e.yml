@@ -1,0 +1,57 @@
+---
+type: Batch
+timelimit: 6s
+match: Lines
+
+cases:
+  - name: sample1
+    in: |
+      5
+      aa
+      abbaa
+      abbba
+      aaab
+      aaaaaba
+      5
+      1 abcdefghijklmnopqrstuvwxyz
+      2 bacdefghijklmnopqrstuvwxyz
+      3 abcdefghijklmnopqrstuvwxyz
+      4 bacdefghijklmnopqrstuvwxyz
+      5 abcdefghijklmnopqrstuvwxyz
+    out: |
+      1
+      2
+      5
+      4
+      2
+  - name: sample2
+    in: |
+      8
+      abrakatabra
+      abadaba
+      abracadabra
+      atcoder
+      grand
+      contest
+      ababa
+      a
+      6
+      3 abcdefghijklmnopqrstuvwxyz
+      6 qwertyuiopasdfghjklzxcvbnm
+      8 poiuytrewqlkjhgfdsamnbvcxz
+      2 qazwsxedcrfvtgbyhnujmikolp
+      1 plokmijnuhbygvtfcrdxeszwaq
+      4 mnbvcxzasdfghjklpoiuytrewq
+    out: |
+      4
+      8
+      2
+      3
+      4
+      7
+
+extend:
+  - type: Text
+    path: "./e"
+    in: /in/*.txt
+    out: /out/*.txt
