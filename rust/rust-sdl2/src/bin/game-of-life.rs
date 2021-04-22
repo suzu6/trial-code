@@ -10,9 +10,9 @@ use sdl2::render::{Canvas, Texture, TextureCreator};
 use sdl2::video::{Window, WindowContext};
 
 mod game_of_life {
-    pub const SQUARE_SIZE: u32 = 16;
-    pub const PLAYGROUND_WIDTH: u32 = 49;
-    pub const PLAYGROUND_HEIGHT: u32 = 40;
+    pub const SQUARE_SIZE: u32 = 2;
+    pub const PLAYGROUND_WIDTH: u32 = 400;
+    pub const PLAYGROUND_HEIGHT: u32 = 400;
 
     #[derive(Copy, Clone)]
     pub enum State {
@@ -285,7 +285,7 @@ pub fn main() -> Result<(), String> {
         }
 
         // update the game loop here
-        if frame >= 30 {
+        if frame >= 5 {
             game.update();
             frame = 0;
         }
@@ -294,7 +294,7 @@ pub fn main() -> Result<(), String> {
         canvas.clear();
         for (i, unit) in (&game).into_iter().enumerate() {
             let i = i as u32;
-            let square_texture = if frame >= 15 {
+            let square_texture = if frame >= 2 {
                 &square_texture1
             } else {
                 &square_texture2
