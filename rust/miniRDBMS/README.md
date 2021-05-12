@@ -15,6 +15,7 @@ https://www.youtube.com/watch?v=eWDkIz9BN0A
 GuHubのコードとCargo.tomlのクレートの依存関係を書いておかないとエラーになる。
 
 ファイルをコピペしてきて、処理ごとにコメントを書くのが良いかも。
+（バッファーからはそうした）
 
 ひとファイルずつ書いてテストするには`main.rs`に`mod disk;`と書いてから`cargo test`を実行する必要がある。
 

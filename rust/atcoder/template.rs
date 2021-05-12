@@ -13,6 +13,9 @@ fn main() {
   }
 
   let cs: Vec<char> = s.chars().collect();
+    
+  let pb: Vec<String> = cs.iter().map(|x| x.to_string()).collect();
+  println!("{}", pb.join(""));
 }
 
 fn hash(){

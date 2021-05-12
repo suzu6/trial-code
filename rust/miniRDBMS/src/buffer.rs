@@ -30,7 +30,9 @@ impl Default for Buffer {
     fn default() -> Self {
         Self {
             page_id: Default::default(),
+            // RefCellはRustで静的に管理できない複雑なデータ構造の競合を実行時に検査する。
             page: RefCell::new([0u8; PAGE_SIZE]),
+            // Cellha読み取り専用の値の中に書き込み可能な値をつくる
             is_dirty: Cell::new(false),
         }
     }
@@ -39,9 +41,12 @@ impl Default for Buffer {
 #[derive(Debug, Default)]
 pub struct Frame {
     usage_count: u64,
-    buffer: Rc<Buffer>, // 参照の数を追跡してカウントする
+    // Rcは対象の参照の数を追跡してカウントする
+    // 貸出中のバッファを勝手に削除しないため
+    buffer: Rc<Buffer>,
 }
 
+// メモリにページを持つ
 pub struct BufferPool {
     buffers: Vec<Frame>,
     next_victim_id: BufferId,
@@ -62,6 +67,8 @@ impl BufferPool {
         self.buffers.len()
     }
 
+    // Clock-sweepの実装
+    // 捨てるバッファを決めるアルゴリズム
     fn evict(&mut self) -> Option<BufferId> {
         let pool_size = self.size();
         let mut consecutive_pinned = 0;
@@ -105,8 +112,11 @@ impl IndexMut<BufferId> for BufferPool {
 }
 
 pub struct BufferPoolManager {
+    // バッファープールに必要なバッファがないときに使う
     disk: DiskManager,
+    // バッファプール
     pool: BufferPool,
+    // バッファIDとページIDのマップテーブル
     page_table: HashMap<PageId, BufferId>,
 }
 
