@@ -1,0 +1,29 @@
+[package]
+name = "abc068"
+version = "0.1.0"
+authors = ["suzu6 <y.suzumura0604@gmail.com>"]
+edition = "2018"
+
+[package.metadata.cargo-compete.bin]
+abc068-a = { alias = "a", problem = "https://atcoder.jp/contests/abc068/tasks/abc068_a" }
+abc068-b = { alias = "b", problem = "https://atcoder.jp/contests/abc068/tasks/abc068_b" }
+abc068-c = { alias = "c", problem = "https://atcoder.jp/contests/abc068/tasks/arc079_a" }
+abc068-d = { alias = "d", problem = "https://atcoder.jp/contests/abc068/tasks/arc079_b" }
+
+[[bin]]
+name = "abc068-a"
+path = "src/bin/a.rs"
+
+[[bin]]
+name = "abc068-b"
+path = "src/bin/b.rs"
+
+[[bin]]
+name = "abc068-c"
+path = "src/bin/c.rs"
+
+[[bin]]
+name = "abc068-d"
+path = "src/bin/d.rs"
+[dependencies]
+[dev-dependencies]
