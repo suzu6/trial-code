@@ -1,0 +1,14 @@
+{
+  "name": "my-codility",
+  "version": "1.0.0",
+  "main": "src/index.js",
+  "author": "suzu6",
+  "license": "MIT",
+  "scripts": {
+    "test": "jest"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "jest": "^27.2.5"
+  }
+}
