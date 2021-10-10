@@ -5,7 +5,7 @@ https://github.com/qryxip/cargo-compete/blob/master/README-ja.md
 
 初回
 ```bash
-$ cargo install cargo-compete
+$ cargo install cargo-compete --locked
 
 $ cargo compete init atcoder
 
